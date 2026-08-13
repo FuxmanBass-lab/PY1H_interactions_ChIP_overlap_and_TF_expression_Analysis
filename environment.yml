@@ -1,0 +1,29 @@
+# environment.yml
+#
+# Minimal conda env to run s1, s2, s3 in this folder.
+#
+# Build:
+#   conda env create -f environment.yml
+#   conda activate tf_het_analysis_2026
+#
+name: tf_het_analysis_2026
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.10
+  - pandas
+  - openpyxl
+  - r-base
+  - r-dplyr
+  - r-readxl
+  - r-writexl
+  - r-igraph
+  - r-reshape2
+  - r-ggplot2
+  - r-readr
+  - pip
+  - pip:
+      - pybbi
+      - biomart
