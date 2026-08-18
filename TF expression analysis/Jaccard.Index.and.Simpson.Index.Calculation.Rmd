@@ -1,0 +1,107 @@
+---
+title: "Scripts for Paired yeast one-hybrid assays to detect DNA-binding cooperativity and antagonism across transcription factors"
+author: "Zhaorong Li"
+output: 
+  html_document:
+    toc: true
+    toc_float:
+      toc_collapsed: true
+      toc_depth: 3
+    number_sections: true
+    fig_caption: yes
+    theme: cerulean
+    code_folding: hide
+editor_options: 
+  chunk_output_type: console
+
+---
+
+
+# Read in Count Matrix
+
+| The first step is to read in a expression matrix. The rows of the count matrix are gene names and the columns of the count matrix are samples or aggregated samples (depending on the experiment design and data types). 
+
+| In this case the data set is CPM normalized. But any type of normalization is supported.
+
+
+```{r read in samples,fig.height=10,fig.width=10}
+
+CountMatrix=read.table('Tissue_Celltype.CPM.tsv',header = T,row.names = 1,sep = '\t',check.names = F)
+
+head(CountMatrix,n = c(5,5))
+
+heatmap((((as.matrix(CountMatrix)))))
+
+```
+
+
+
+# Build Binary Expression Matrix
+
+| The binary expression matrix is calculated based on the expression matrix. 
+| The rows of the binary expression matrix are genes and the columns are samples or aggregated samples, just like the expression matrix. 
+
+| For every sample i:
+|     For every gene j:
+|         If the expression of gene j is larger than 0.1 * maximum(sample i), gene j is considered "Expressed".
+|         If the gene is considered expressed, gene j on sample i is marked as "1"; Otherwise it is marked as 0.
+
+| The Binary Matrix is used to determined whether a gene is "expressed' in a sample. This information will be used to evaluating of the expression pattern among samples later.
+
+```{r Build Binary Expression Matrix,fig.height=10,fig.width=10}
+
+Binary=data.frame(matrix(rep(0,nrow(CountMatrix)*ncol(CountMatrix)),nrow = nrow(CountMatrix),dimnames = list(rownames(CountMatrix),colnames(CountMatrix))))
+
+for (i in 1:nrow(Binary)) {
+  threshold=max(CountMatrix[i,])*(0.1)
+  Binary[i,]=ifelse(CountMatrix[i,]>=threshold,yes=1,no=0)
+}
+
+head(Binary,n = c(5,5))
+
+heatmap((((as.matrix(Binary)))))
+
+```
+
+
+
+
+
+# Evaluate the coexpression and diversity of genes among samples.
+
+| For every pair of TFs, the following results are calculated:
+|     Number of samples expressing the TF1 in the pair
+|     Number of samples expressing the TF2 in the pair
+|     Number of samples expressing both TF1 and TF2 in the pair
+|     Jaccard Index of the two TFs
+|     Simpson Index of the two TFs
+
+
+```{r Evaluate the coexpression and diversity of genes among samples,fig.height=10,fig.width=10}
+
+
+interactions=read.table('interactions.tsv',header = T)
+
+interactions$TF1.presence=0
+interactions$TF2.presence=0
+interactions$TFs.copresence=0
+interactions$Jaccard.Index=0
+interactions$Simpson.Index=0
+
+
+for (i in 1:nrow(interactions)) {
+  TF1=Binary[interactions$TF1[i],]
+  TF2=Binary[interactions$TF2[i],]
+  interactions$TF1.presence[i]=sum(TF1==1)
+  interactions$TF2.presence[i]=sum(TF2==1)
+  interactions$TFs.copresence[i]=length(intersect(names(TF1)[TF1==1],names(TF2)[TF2==1]))
+  interactions$Jaccard.Index[i]=length(intersect(names(TF1)[TF1==1],names(TF2)[TF2==1]))/length(unique(c(names(TF1)[TF1==1],names(TF2)[TF2==1])))
+  interactions$Simpson.Index[i]=length(intersect(names(TF1)[TF1==1],names(TF2)[TF2==1]))/min(c(length(names(TF2)[TF2==1]),
+                                                                                               length(names(TF1)[TF1==1])))
+  
+}
+
+head(interactions)
+
+write.table(interactions,'interactions.analyzed.tsv',quote = F,sep = '\t',row.names = F)
+```
