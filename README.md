@@ -38,11 +38,11 @@ export GTRD_MACS2_DIR_OVERRIDE=/local/path/MACS2
 ## Scripts for TF expression among tissues and tissue-cell types analysis: tissue cell type specificity score analysis
 
 
-Transcription factor tissue specific score analysis/tissue.specificity.score.R.
+Tabula sapien tissue specific score analysis/tissue.specificity.score.R.
 
 ## How to run TF expression among tissues and tissue-cell types analysis: tissue cell type specificity score analysis
 
-Use R to run "Transcription factor tissue specific score analysis/tissue.specificity.score.R".
+Use R to run "Tabula sapien tissue specific score analysis/tissue.specificity.score.R".
 
 
 
@@ -50,13 +50,13 @@ Use R to run "Transcription factor tissue specific score analysis/tissue.specifi
 ## Scripts for TF expression among tissues and tissue-cell types analysis: jaccard index and simpson index of transcription factors
 
 
-Transcription factor jaccard and simpson index index/Jaccard.Index.and.Simpson.Index.Calculation.Rmd
+Tabula sapien jaccard and simpson index index/Jaccard.Index.and.Simpson.Index.Calculation.Rmd
 
 ## How to run TF expression among tissues and tissue-cell types analysis: jaccard index and simpson index of transcription factors
 
-Use R studio to render "Transcription factor jaccard and simpson index index/Jaccard.Index.and.Simpson.Index.Calculation.Rmd".
+Use R studio to render "Tabula sapien jaccard and simpson index index/Jaccard.Index.and.Simpson.Index.Calculation.Rmd".
 
-A rendered html file is in "Transcription factor jaccard and simpson index index/Jaccard.Index.and.Simpson.Index.Calculation.html".
+A rendered html file is in "Tabula sapien jaccard and simpson index index/Jaccard.Index.and.Simpson.Index.Calculation.html".
 
 
 
