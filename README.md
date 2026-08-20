@@ -47,16 +47,11 @@ Use R to run "Tabula sapien tissue specific score analysis/tissue.specificity.sc
 
 
 
-## Scripts for TF expression among tissues and tissue-cell types analysis: jaccard index and simpson index of transcription factors
+## Scripts for single cell RNA-Seq analysis
+
+single-cell-rna-seq-analysis/single.cell.processing.script.R. All the results are in the ssingle-cell-rna-seq-analysis/Results folder.
 
 
-Tabula sapien jaccard and simpson index index/Jaccard.Index.and.Simpson.Index.Calculation.Rmd
-
-## How to run TF expression among tissues and tissue-cell types analysis: jaccard index and simpson index of transcription factors
-
-Use R studio to render "Tabula sapien jaccard and simpson index index/Jaccard.Index.and.Simpson.Index.Calculation.Rmd".
-
-A rendered html file is in "Tabula sapien jaccard and simpson index index/Jaccard.Index.and.Simpson.Index.Calculation.html".
 
 
 
