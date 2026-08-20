@@ -50,7 +50,7 @@ Use R to run "Tabula sapien tissue specific score analysis/tissue.specificity.sc
 ## Scripts for single cell RNA-Seq analysis
 
 single-cell-rna-seq-analysis/single.cell.processing.script.R. All the results are in the ssingle-cell-rna-seq-analysis/Results folder.
-Input data is available at Tabula sapien (https://tabula-sapiens.sf.czbiohub.org/whereisthedata)
+Input data is available at Tabula sapien (https://doi.org/10.6084/m9.figshare.27921984.v1)
 
 
 
